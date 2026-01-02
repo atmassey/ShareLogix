@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="34.01" TargetName="Bardiani_IO_Link" TargetType="AddOnInstructionDefinition" TargetClass="Standard" TargetRevision="1.0 " TargetLastEdited="2025-12-12T01:28:08.336Z" ContainsContext="true" Owner="Windows User" ExportDate="Fri Jan 02 07:54:11 2026" ExportOptions="References NoRawData L5KData DecoratedData Context Dependencies ForceProtectedEncoding AllProjDocTrans"
+>
+<Controller Use="Context" Name="Test_Unit">
+<DataTypes Use="Context">
+</DataTypes>
+<AddOnInstructionDefinitions Use="Context">
+<AddOnInstructionDefinition Use="Target" Name="Bardiani_IO_Link" Class="Standard" Revision="1.0" ExecutePrescan="false" ExecutePostscan="false" ExecuteEnableInFalse="false" CreatedDate="2025-12-11T21:21:05.097Z" CreatedBy="HBGCONTROL\michael.shartzer" EditedDate="2025-12-12T01:28:08.336Z" EditedBy="HBGCONTROL\michael.shartzer"
+ SoftwareRevision="v34.01">
+<Parameters>
+<Parameter Name="EnableIn" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Input - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="EnableOut" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="false" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Enable Output - System Defined Parameter]]>
+</Description>
+</Parameter>
+<Parameter Name="PLC_Input" TagType="Base" DataType="INT" Dimensions="223" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false">
+<Description>
+<![CDATA[Reference the Input Controller tag <IOLinkMasterName>:I1.Data]]>
+</Description>
+</Parameter>
+<Parameter Name="PLC_Output" TagType="Base" DataType="INT" Dimensions="151" Usage="InOut" Radix="Decimal" Required="true" Visible="true" Constant="false">
+<Description>
+<![CDATA[Reference the Output Controller tag <IOLinkMasterName>:O1.Data]]>
+</Description>
+</Parameter>
+<Parameter Name="Port_Process_Data_Size" TagType="Base" DataType="SINT" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[User Input Value from the Configuration Controller tag <IOLinkMasterName>:C.Port_Process_Data_Size]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Port_Number" TagType="Base" DataType="SINT" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[User Input Value = Port number of the IO-Link Master]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Vendor_ID" TagType="Base" DataType="INT" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Read only value indicating the manufacturer of the IO-Link Device. ifm=310 dec]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Device_ID" TagType="Base" DataType="DINT" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[Read only value set by the manufacturer of the device. Varies by product family]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="DINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="IOL_Mode" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[True: Port is configured for IO-Link Communication. False: Port is not configured for IO-Link Communication]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Device_Not_Connected" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[True: No IO-Link Device is connected
+False: IO-Link Device is connected]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Invalid_Data" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[True: IO-Link Data is invalid False: IO-Link Data is valid]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Wrong_VID_DID" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<Description>
+<![CDATA[True: Vendor ID and/or Device ID does not match the configured VID or DID set in Configuration Controller Tag(s) <IOLink MasterName>:C.Vendor_ID_Port_n or ...C.Device_ID_Port_n]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Diagnostic_Avail" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[True: IO-Link Event data is available False: No Event data is present]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="AOI_Settings_Error" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[A user input is out of range. Check port process data size and port number]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Position1" TagType="Base" DataType="REAL" Usage="Output" Radix="Float" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current position of the valve in degrees -1800 to 1799 | (32764) NoData]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Position2" TagType="Base" DataType="REAL" Usage="Output" Radix="Float" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current position of the valve in degrees -1800 to 1799 | (32764) NoData]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0.00000000e+000]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="REAL" Radix="Float" Value="0.0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Switch1" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current status of the digital signal]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Switch2" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current status of the digital signal]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Switch3" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current Status of the digital signal]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Switch4" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Current Status of the digital signal]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Device_OK" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Maintenance_required" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Out_Of_Specification" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Valve opening or closing time over/under-run, Device temperature over/under-run]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Functional_check" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[Short Ciruit, signla detector error/Probe dropped, component malfunction]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Failure" TagType="Base" DataType="BOOL" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="MS" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="LL" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="UL" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Localize_device" TagType="Base" DataType="BOOL" Usage="Input" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read/Write">
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="BOOL" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+<Parameter Name="Valve_Mode" TagType="Base" DataType="SINT" Usage="Output" Radix="Decimal" Required="false" Visible="true" ExternalAccess="Read Only">
+<Description>
+<![CDATA[(0) Initialization | (1) Normal operation | (2) Teach function active | (3) Safety position | (4) Manual control | (5) Spare | (6) Internal safety position | (7) Spare]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</Parameter>
+</Parameters>
+<LocalTags>
+<LocalTag Name="StatusFlgs_Offset" DataType="SINT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Result of Offset_StatusFlgs+23]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="RealPort_Num" DataType="SINT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Result of the Port_Number-1]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Offset_StatusFlgs" DataType="SINT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[RealPort_Num+9]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Process_Out_Offset" DataType="INT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Result of Offset_Address+23]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Process_Offset" DataType="INT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Result of Offset_Address+95(8port Master) or Offset_Address+59(4port Master). Used to indicate the word offset for where the IO-Link device’s process input data starts]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Device_Status" DataType="SINT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Current device status]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Data_Size" DataType="SINT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Factor of the RealPort_Num to calcualated the Offset_Address]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="SINT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+<LocalTag Name="Offset_Address" DataType="INT" Radix="Decimal" ExternalAccess="None">
+<Description>
+<![CDATA[Result of Data_Size*RealPort_Number]]>
+</Description>
+<DefaultData Format="L5K">
+<![CDATA[0]]>
+</DefaultData>
+<DefaultData Format="Decorated">
+<DataValue DataType="INT" Radix="Decimal" Value="0"/>
+</DefaultData>
+</LocalTag>
+</LocalTags>
+<Routines>
+<Routine Name="Logic" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment>
+<![CDATA[Calculate Data_Size depending on Port_Process_Data_Size input by the user]]>
+</Comment>
+<Text>
+<![CDATA[[EQU(Port_Process_Data_Size,0) MOV(1,Data_Size) ,EQU(Port_Process_Data_Size,1) MOV(2,Data_Size) ,EQU(Port_Process_Data_Size,2) MOV(4,Data_Size) ,EQU(Port_Process_Data_Size,3) MOV(8,Data_Size) ,EQU(Port_Process_Data_Size,4) MOV(16,Data_Size) ];]]>
+</Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment>
+<![CDATA[If the user input Port_Number <= to the maximum number of ports on the IO-Link master (4 or 8) and the Port_Number != to 0 then 
+calculate the Process_Offset  (if process input data is produced by the IO-Link Device) and/or calculate the Process_Value_Offset (if process output data is consumed by the IO-Link Device). 
+Parallel to the Calculation of the Process_Offset and/or Process_Value_Offset calculate the value of the StatusFlgs_Offset
+]]>
+</Comment>
+<Text>
+<![CDATA[LEQ(Port_Number,8)GRT(Port_Number,0)SUB(Port_Number,1,RealPort_Num)[MUL(Data_Size,RealPort_Num,Offset_Address) ADD(Offset_Address,95,Process_Offset) ADD(Offset_Address,23,Process_Out_Offset) ,MUL(9,RealPort_Num,Offset_StatusFlgs) ADD(Offset_StatusFlgs,23,StatusFlgs_Offset) ];]]>
+</Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment>
+<![CDATA[Sets states of IOL_Mode, Device_Not_Connected, Invalid_Data, Wrong_VID_DID and Diagnostic Available and set the values for the Vendor ID and Device ID from the Controller input tags of the user input Port_Number
+]]>
+</Comment>
+<Text>
+<![CDATA[[XIC(PLC_Input[StatusFlgs_Offset].0) OTE(IOL_Mode) ,XIC(PLC_Input[StatusFlgs_Offset].1) OTE(Device_Not_Connected) ,XIC(PLC_Input[StatusFlgs_Offset].2) OTE(Invalid_Data) ,XIC(PLC_Input[StatusFlgs_Offset].3) OTE(Wrong_VID_DID) ,XIC(PLC_Input[StatusFlgs_Offset].7) OTE(Diagnostic_Avail) ,MOV(PLC_Input[StatusFlgs_Offset+1],Vendor_ID) ,COP(PLC_Input[StatusFlgs_Offset+2],Device_ID,1) ];]]>
+</Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment>
+<![CDATA[Set the State of AOI_Setting_Error by verifying the user input setting of Port_Number and Port_Process_Data_Size is within range of the IO-Link Master. GRT instruction for Port_Number compares to value=8 for 8 port masters and =4 for 4 port masters]]>
+</Comment>
+<Text>
+<![CDATA[[LEQ(Port_Number,0) ,GRT(Port_Number,8) ,LES(Port_Process_Data_Size,0) ,GRT(Port_Process_Data_Size,4) ]OTE(AOI_Settings_Error);]]>
+</Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text>
+<![CDATA[[MUL(PLC_Input[Process_Offset],0.1,Position1) ,MUL(PLC_Input[Process_Offset+1],0.1,Position2) ,XIC(PLC_Input[Process_Offset+2].0) OTE(Switch1) ,XIC(PLC_Input[Process_Offset+2].1) OTE(Switch2) ,XIC(PLC_Input[Process_Offset+2].2) OTE(Switch3) ,XIC(PLC_Input[Process_Offset+2].3) OTE(Switch4) ];]]>
+</Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text>
+<![CDATA[[XIC(MS) OTE(PLC_Output[Process_Out_Offset].8) ,XIC(UL) OTE(PLC_Output[Process_Out_Offset].9) ,XIC(LL) OTE(PLC_Output[Process_Out_Offset].10) ];]]>
+</Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment>
+<![CDATA[Device Status byte is converted to binary outputs]]>
+</Comment>
+<Text>
+<![CDATA[BTD(PLC_Input[Process_Offset+2],8,Device_Status,0,8)[EQU(Device_Status,1) OTE(Device_OK) ,EQU(Device_Status,2) OTE(Maintenance_required) ,EQU(Device_Status,3) OTE(Out_Of_Specification) ,EQU(Device_Status,4) OTE(Functional_check) ,EQU(Device_Status,5) OTE(Failure) ];]]>
+</Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</AddOnInstructionDefinition>
+</AddOnInstructionDefinitions>
+</Controller>
+</RSLogix5000Content>
