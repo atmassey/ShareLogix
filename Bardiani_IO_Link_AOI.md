@@ -256,13 +256,3 @@ A properly operating valve will show:
 * **Document Type:** Maintenance Handoff
 * **Device:** Bardiani IO-Link Valve
 * **Integration:** IFM IO-Link Master with AOI
-
----
-
-If you want, I can also:
-
-* Split this into **README.md + reference sections**
-* Convert it into **GitHub-flavored Markdown**
-* Generate a **Mermaid diagram** for the data flow
-* Normalize tag names for **Studio 5000 documentation**
-
